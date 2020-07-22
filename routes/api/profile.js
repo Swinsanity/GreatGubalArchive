@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
+const { check, validationResult } = require("express-validator/check");
 
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
@@ -24,5 +25,45 @@ router.get("/me", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+// @route   POST api/profile
+// @desc    Create or update user profile
+// @access  Private
+router.post(
+  "/",
+  [
+    auth,
+    [
+      check("status", "Status is required").not().isEmpty(),
+      check("jobs", "Jobs is required").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+      freeCompany,
+      website,
+      location,
+      bio,
+      status,
+      inGameName,
+      jobs,
+    } = req.body;
+
+    //Build profile object
+    const profileFields = {};
+    profileFields.user = req.user.id;
+    if (freeCompany) profileFields.freeCompany = freeCompany;
+    if (website) profileFields.website = website;
+    if (location) profileFields.location = location;
+    if (bio) profileFields.bio = bio;
+    if (status) profileFields.status = status;
+    if (inGameName) profileFields.inGameName = inGameName;
+  }
+);
 
 module.exports = router;
