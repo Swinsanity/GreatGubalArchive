@@ -8,6 +8,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
+        <Link to='/profiles'>Warriors of Light</Link>
+      </li>
+      <li>
+        <Link to='/posts'>Blog Posts</Link>
+      </li>
+      <li>
         <Link to='/dashboard'>
           <i className='fas fa-user'></i>{" "}
           <span className='hide-sm'>Dashboard</span>
@@ -25,7 +31,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <a href='#!'>Developers</a>
+        <Link to='/profiles'>Warriors of Light</Link>
       </li>
       <li>
         <Link to='/register'>Register</Link>
@@ -40,7 +46,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className='navbar bg-dark'>
       <h1>
         <Link to='/'>
-          <i className='fas fa-code'></i> DevConnector
+          <i className='fas fa-code'></i> Great Gubal Archive
         </Link>
       </h1>
       {!loading && (
