@@ -30,7 +30,7 @@ router.post(
     const { name, email, username, password } = req.body;
 
     try {
-      var user = await User.findOne({ email });
+      let user = await User.findOne({ email });
 
       if (user) {
         return res
