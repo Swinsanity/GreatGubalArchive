@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://Montblanc:montblanc123@greatgubalarchive.fbh5l.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "mySecretToken"
+}
