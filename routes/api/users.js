@@ -30,9 +30,9 @@ router.post(
     const { name, email, username, password } = req.body;
 
     try {
-      let user = await User.findOne({ email });
+      let userEmail = await User.findOne({ email });
 
-      if (user) {
+      if (userEmail) {
         return res
           .status(400)
           .json({ errors: [{ msg: 'User already exists' }] });
